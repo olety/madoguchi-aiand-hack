@@ -1,0 +1,8 @@
+node_modules/
+web/dist/
+.env
+.env.local
+data/madoguchi.db
+data/madoguchi.db-*
+*.log
+.DS_Store
