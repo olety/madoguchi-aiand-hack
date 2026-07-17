@@ -1,4 +1,5 @@
 import type {
+  ArbitrageResult,
   Attention,
   Company,
   CompanyDetail,
@@ -46,4 +47,10 @@ export const api = {
     fetch(`/api/phones/${encodeURIComponent(phone)}`, {
       method: "DELETE",
     }).then(j<{ ok: boolean }>),
+  arbitrage: (input: Record<string, number>) =>
+    fetch("/api/arbitrage", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(input),
+    }).then(j<ArbitrageResult>),
 };

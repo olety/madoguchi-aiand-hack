@@ -72,3 +72,35 @@ export type IngestResult = {
 };
 
 export type Phone = { phone: string; company_id: string; company_name: string };
+
+export type ArbitrageResult = {
+  inputs: { buyer_rate: number; supplier_rate: number; discount: number; days_early: number };
+  pricing_window: {
+    buyer_rate: number;
+    supplier_rate: number;
+    annualized_discount_rate: number;
+    in_window: boolean;
+    buyer_yield_spread: number;
+    supplier_interest_saving: number;
+    annualized_discount_rate_pct: number;
+    buyer_yield_spread_pct: number;
+    supplier_interest_saving_pct: number;
+  };
+  cash_conversion_cycle?: {
+    dio: number;
+    dso: number;
+    dpo: number;
+    ccc_days: number;
+    supplier_ccc_days_after_early_payment: number;
+    working_capital_freed_days: number;
+  };
+  valuation_impact?: {
+    cogs: number;
+    delta_ebitda: number;
+    ev_ebitda_multiple?: number;
+    delta_enterprise_value?: number;
+    delta_share_price?: number;
+    shares_outstanding?: number;
+  };
+  verdict: string;
+};

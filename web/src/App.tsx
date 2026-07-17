@@ -7,6 +7,7 @@ import { ProvenanceDrawer } from "./components/ProvenanceDrawer";
 import { CompanyDrawer } from "./components/CompanyDrawer";
 import { SettingsModal } from "./components/SettingsModal";
 import { IngestPanel } from "./components/IngestPanel";
+import { ArbitragePanel } from "./components/ArbitragePanel";
 
 type AttnKey = "renewal_soon" | "unpaid" | "invoice_missing";
 
@@ -123,6 +124,8 @@ export default function App() {
         />
 
         <IngestPanel onIngested={onIngested} />
+
+        <ArbitragePanel />
       </div>
 
       {/* Drawers / modals */}

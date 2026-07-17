@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { existsSync } from "node:fs";
 import { db, seedIfEmpty, EXTRACTABLE_FIELDS, type Company } from "./db.ts";
 import { extractEmail, type CompanyRef, type EmailInput } from "./extract.ts";
+import { computeArbitrage, type ArbitrageInput } from "./finance.ts";
 
 seedIfEmpty();
 
@@ -367,6 +368,20 @@ app.post("/api/ingest", async (c) => {
   }
 
   return c.json({ results });
+});
+
+// --- NexusArbitrage: dynamic-discounting engine ------------------------------
+// POST /api/arbitrage — body is ArbitrageInput (all fields optional; defaults
+// reproduce the worked example r_d ≈ 5.0%). Returns pricing window, CCC impact,
+// and EBITDA/EV/share-price uplift.
+app.post("/api/arbitrage", async (c) => {
+  let body: ArbitrageInput = {};
+  try {
+    body = (await c.req.json()) as ArbitrageInput;
+  } catch {
+    body = {}; // allow empty body -> defaults
+  }
+  return c.json(computeArbitrage(body));
 });
 
 // --- sample emails for the demo ingest panel (data/emails/*.md) --------------

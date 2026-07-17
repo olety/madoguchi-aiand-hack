@@ -1,9 +1,9 @@
 // Email -> structured status extraction. Kimi K2.7 (via the ai& proxy) is the
 // only brain here. Mirrors prompts/extraction-prompt.md — iterate them together.
 
-const AI_BASE_URL = process.env.AI_BASE_URL ?? "http://127.0.0.1:8317/v1";
+const AI_BASE_URL = process.env.AI_BASE_URL ?? "https://api.aiand.com/v1";
 const AI_API_KEY = process.env.AI_API_KEY ?? "";
-const AI_MODEL = process.env.AI_MODEL ?? "kimi-k2.7-code";
+const AI_MODEL = process.env.AI_MODEL ?? "zai-org/glm-5.2";
 
 export type CompanyRef = { id: string; company_name: string; kana: string };
 
